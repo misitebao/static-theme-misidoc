@@ -1,0 +1,32 @@
+{
+  "name": "static-theme-misidoc",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js --fix",
+    "format": "prettier --write src/"
+  },
+  "engines": {
+    "node": ">=16.14.0",
+    "pnpm": ">=8"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7",
+    "sass": "^1.58.3",
+    "tailwindcss": "^3.2.7",
+    "vite": "^4.1.0",
+    "vite-plugin-html": "^3.2.0"
+  },
+  "dependencies": {
+    "alpinejs": "^3.11.1"
+  }
+}

@@ -1,0 +1,46 @@
+name: Build and Submit
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-and-submit:
+    name: Build and Submit
+    runs-on: ubuntu-latest
+    if: github.repository == 'misix-themes/static-theme-misidoc'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: "main"
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.14.2
+
+      - name: Setup Git
+        run: |
+          git config --local user.email "i@misitebao.com"
+          git config --local user.name "Misite Bao"
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build
+        run: task build
+
+      - name: Automatic Submission
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          commit_prefix: ""
+          commit_message: "release: ${{  github.ref_name }}"

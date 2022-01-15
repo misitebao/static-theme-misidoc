@@ -1,0 +1,35 @@
+# https://taskfile.dev
+
+version: "3"
+
+tasks:
+  install:
+    desc: Install dependencies
+    cmds:
+      - corepack enable
+      - corepack prepare pnpm@8.2.0 --activate
+      - pnpm install
+    sources:
+      - package.json
+      - pnpm-lock.yaml
+
+  default:
+    deps: [install]
+    aliases: [s, start]
+    cmds:
+      - pnpm run dev
+
+  build:
+    deps: [install]
+    cmds:
+      - pnpm run build
+
+  preview:
+    deps: [build]
+    cmds:
+      - pnpm run preview
+
+  lint:
+    deps: [install]
+    cmds:
+      - pnpm run lint
